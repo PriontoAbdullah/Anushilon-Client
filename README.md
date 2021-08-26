@@ -1,71 +1,135 @@
-# Getting Started with Create React App
+# 📺 Anushilon Virtual Science Lab
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ANUSIHLON is based on the idea that lab experiments can be taught using the internet, more efficiently and less expensively. The online lab is made for students with no access to physical labs or where equipment is not available owing to being rare or costly.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Important Links
 
-### `yarn start`
+- [Live Website](https://anushilon-bd.web.app/)
+- [Client Repository](https://github.com/PriontoAbdullah/Anushilon-Client)
+- [Server Repository](https://github.com/PriontoAbdullah/Anushilon-Server)
+- [Simulation Repository](https://github.com/PriontoAbdullah/Anushilon-Simulations)
+- [Project Proposal](https://docs.google.com/document/d/1dRNe0lboYRz5FtkDCwzMn4U7d8dcPxRaE5bc0S-pFKE/edit?usp=sharing)
+- [Project Presentation](https://docs.google.com/presentation/d/1ZZl3t_hAsnq53eLVLowDTmgE9oMpwY1AZWzPglrltes/edit?usp=sharing)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 💡 Motivation
 
-### `yarn test`
+Virtual labs are easy to set up, use and maintain, with notable reductions in cost and time. Experiments can also be repeated multiple times. This virtual lab has to be adopted in schools and colleges to make their students think out of the box.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `yarn build`
+## 📦 Problem Statement
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+These are the problems I'm trying to solve. In our country, students are in the laboratory. They focus on writing test cases on their notes because they need to prepare a lab report of all experiments for their board practical examinations. Students do not focus on what they should learn and what scopes they can use in their experiments.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The major problem in rural areas is students cannot conduct experiments in village schools and colleges due to a lack of laboratory equipment and less funding.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In this pandemic situation, schools and colleges are off for over a year. Students study online with the help of e-learning platforms but cannot conduct lab experiments because online, there is no possibility to explore science lab experiments.
 
-### `yarn eject`
+So the only solution to these kinds of problems is Virtual labs.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 💎 What and How I am trying to solve this problem
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. The main objective of developing a virtual science lab that supports flexible online, collaborative science experiments learning environment.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Where schools and college students can learn science experiments by simulation.
 
-## Learn More
+3. The experiments of Physics, Chemistry, and Biology subjects of class 9 - 12 in NCTB curriculum.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Also provide theory, procedure, pictures, video, animation, simulation, observation table, resources of every experiment.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. Create a lab room where teachers can assign experiments, evaluation, and grading observations and see all the students’ performance.
 
-### Code Splitting
+6. Also, students enroll in that lab room and submit that experiment observation. Students and Teachers both create posts and comments in the lab room.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+7. Create a science e-learning community platform where students can ask their queries or doubts or share their experiences. Teachers or experts can answer their questions.
 
-### Analyzing the Bundle Size
+8. And create a monitoring panel for institutions to monitor their student’s performance and teachers’ activity. Also, they can post a notice and arrange any workshops.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🗃️ How does this project impacts our society:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- It allows learners to learn through exciting, motivating activities to discover and solve problems systematically.
 
-### Advanced Configuration
+- Hands-on lab exercises in a flexible learning context and real-world problem-solving.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- It is helping to calculate their experiment results and record their experiment data in observation tables and generate results accuracy with graph view.
 
-### Deployment
+- Students are capable of experimenting as much as possible without barriers to tools, time, and place.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `yarn build` fails to minify
+## 🖼️ My contributions and the Project outcome.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Anushilon-virtual-science-lab
+- Utilizing a virtual lab provides students with the chance to develop critical thinking, innovation, and team working skills, all of which are highly valued in today's job market.
+
+- Saving time and focusing more on their experiments and individualized practice in all areas of experimentation.
+
+- The ability to perform, record, and learn experiments - anywhere, anytime.
+
+- Helping them to understand the opportunities & scopes of what they can do more with their experiments.
+
+---
+
+## 🛠 Technology Stack
+
+- Language: JavaScript
+- Frontend Library: React.JS
+- State Management: Redux.JS
+- UI Component: Tailwind CSS
+- Web Server: Node.JS
+- Backend Framework: Express.JS
+- Database: MongoDB, Mongoose (ODM)
+- CI/CD: Github, Heroku, Firebase.
+
+---
+
+> ### Install
+``` 
+ yarn install
+```
+> ### Build webpack
+``` 
+ yarn run build
+```
+> ### Dev Server
+
+``` 
+ yarn start
+```
+
+---
+
+### 📱 User Interface
+
+![Anushilon-UI](https://i.imgur.com/Oze0RSF.png)
+
+---
+
+## 📚 Reference
+
+[1] K. Aljuhani, M. Sonbul, M. Althabiti and M. Meccawy, "Creating a Virtual Science Lab (VSL): the adoption of virtual labs in Saudi schools", Smart Learning Environments, vol. 5, no. 1, 2018.
+Available: https://slejournal.springeropen.com/articles/10.1186/s40561-018-0067-9. [Accessed 19 May 2021].
+
+[2] E. Aziz, S. Esche and C. Chassapis, "An Architecture For Virtual Laboratory Experimentation", 2006 Annual Conference & Exposition, Chicago, Illinois, Peer.asee.org, 10.18260/1-2--220, 2006.
+Available: https://peer.asee.org/an-architecture-for-virtual-laboratory-experimentation. [Accessed: 25 May 2021].
+
+[3] M. Zhang and Y. Li, "Students’ Continuance Intention to Experience Virtual and Remote Labs in Engineering and Scientific Education", International Journal of Emerging Technologies in Learning (iJET), vol. 14, no. 17, p. 4, 2019. Available: https://www.researchgate.net/publication/335847040_Students'_Continuance_Intention_to_Experience_Virt
+ual_and_Remote_Labs_in_Engineering_and_Scientific_Education. [Accessed 02 June 2021].
+
+[4] S. Amirkhani, A. Nahvi. Design and Implementation of an Interactive Virtual Control Laboratory Using Haptic Interface for Undergraduate Engineering Students. Computer Applications in Engineering Education vol. 24, pp. 508–518, 2016. Available: https://dl.acm.org/doi/10.1002/cae.21727 [Accessed 02 June 2021].
+
+[5] Geoffroy, F., Zeramdini, K., Nguyen, A. V., Rekik, Y., and Piguet, Y., (2003), “The Cockpit: An Effective Metaphor for Web-based Experimentation in Engineering Education”, Int. J. Engng. Ed., Vol. 19, pp. 389-397.
+Available: https://www.ijee.ie/articles/Vol19-3/IJEE1414.pdf. [Accessed 07 June 2021].
+
+---
+
+## 📑 License
+
+[MIT](https://choosealicense.com/licenses/mit/)
