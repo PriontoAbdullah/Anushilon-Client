@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&display=swap");
-@import url("https://cdn.rawgit.com/sh4hids/bangla-web-fonts/charukola-reguler-unicode/stylesheet.css");
-@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700;800&display=swap');
+@import url('https://cdn.rawgit.com/sh4hids/bangla-web-fonts/charukola-reguler-unicode/stylesheet.css');
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -103,10 +103,14 @@
   @apply px-3 w-32 py-1 text-brand-900 text-base font-normal bg-white border border-gray-300 rounded-md placeholder-gray-400 focus:border-deep-purple-accent-700 focus:shadow-4xl focus:outline-none;
 }
 
+.observation-result {
+  @apply px-3 w-24 py-1 text-brand-900 text-base font-normal bg-white border border-gray-300 rounded-md placeholder-gray-400 focus:border-deep-purple-accent-700 focus:shadow-4xl focus:outline-none;
+}
+
 .dashboard-button {
   @apply bg-brand-900 text-white hover:bg-dark-brand-900 hover:text-gray-50 font-semibold uppercase text-base px-6 py-3 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mx-2 my-2 ease-linear transition-all duration-150;
 }
 
 .close-button {
-  @apply p-1 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-deep-purple-100 focus:outline-none ml-auto bg-transparent border-0 text-brand-900 hover:text-deep-purple-accent-700 float-right text-3xl leading-none font-semibold outline-none;
+  @apply z-50 p-1 transition-colors duration-200 transform rounded-md hover:bg-opacity-25 hover:bg-deep-purple-100 focus:outline-none ml-auto bg-transparent border-0 text-brand-900 hover:text-deep-purple-accent-700 float-right text-3xl leading-none font-semibold outline-none;
 }

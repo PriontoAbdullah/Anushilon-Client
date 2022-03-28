@@ -5,54 +5,56 @@ import {
   faUniversity,
   faUnlock,
   faUser,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
-import React, { Fragment, useContext, useState } from "react";
-import toast from "react-hot-toast";
-import Slide from "react-reveal/Slide";
-import { ModalContext } from "../../App";
-import signInLoader from "../../assets/images/loader/signIn.gif";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import React, { Fragment, useContext, useState } from 'react';
+import toast from 'react-hot-toast';
+import Slide from 'react-reveal/Slide';
+import { ModalContext } from '../../App';
+import signInLoader from '../../assets/images/loader/signIn.gif';
+import { db } from '../../configs/firebase';
+import defaultLabroom from '../../data/defaultLabroom';
 
 const RegistrationModal = (props) => {
   // modal context
   const modalData = useContext(ModalContext);
   // form data initial states
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password1: "",
-    password2: "",
-    textChange: "নিবন্ধন করুন",
+    name: '',
+    email: '',
+    password1: '',
+    password2: '',
+    textChange: 'নিবন্ধন করুন',
   });
 
   const [formUserData, setFormUserData] = useState({
     uInstitution: props.institutionName,
-    uName: "",
-    uEmail: "",
-    uMobile: "",
-    uPassword1: "",
-    uPassword2: "",
-    uTextChange: "নিবন্ধন করুন",
+    uName: '',
+    uEmail: '',
+    uMobile: '',
+    uPassword1: '',
+    uPassword2: '',
+    uTextChange: 'নিবন্ধন করুন',
   });
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState('student');
 
   // for handling modal functionality
   const handleCloseModal = () => {
-    modalData.setShowHeader("block");
+    modalData.setShowHeader('block');
     modalData.setShowRegistrationModal(false);
     modalData.setShowLoginModal(false);
   };
 
   const handleOpenLoginModal = () => {
-    modalData.setShowHeader("hidden");
+    modalData.setShowHeader('hidden');
     modalData.setShowRegistrationModal(false);
     modalData.setNewUser(false);
     modalData.setShowLoginModal(true);
   };
 
   const handleActivationMessage = () => {
-    modalData.setShowHeader("hidden");
+    modalData.setShowHeader('hidden');
     modalData.setShowRegistrationModal(false);
     modalData.setShowLoginModal(false);
     modalData.setShowActivationUserModal(true);
@@ -79,29 +81,48 @@ const RegistrationModal = (props) => {
 
   const handleCountryCode = () => {
     toast(
-      "মোবাইল নম্বর অবশ্যই বৈধ বাংলাদেশী মোবাইল নম্বর হতে হবে। (+880) কান্ট্রি কোড ব্যবহার করুন।",
+      'মোবাইল নম্বর অবশ্যই বৈধ বাংলাদেশী মোবাইল নম্বর হতে হবে। (+880) কান্ট্রি কোড ব্যবহার করুন।',
       {
-        icon: "🙏",
+        icon: '🙏',
       }
     );
   };
 
   const handleStrongPassword = () => {
     toast(
-      "পাসওয়ার্ডটি কমপক্ষে ৮ টি অক্ষরের দীর্ঘ হতে হবে এবং কমপক্ষে একটি ছোট হাতের অক্ষর, একটি বড় হাতের অক্ষর, একটি নম্বর এবং একটি চিহ্ন থাকতে হবে!",
+      'পাসওয়ার্ডটি কমপক্ষে ৮ টি অক্ষরের দীর্ঘ হতে হবে এবং কমপক্ষে একটি ছোট হাতের অক্ষর, একটি বড় হাতের অক্ষর, একটি নম্বর এবং একটি চিহ্ন থাকতে হবে!',
       {
-        icon: "🙏",
+        icon: '🙏',
       }
     );
   };
 
   // post individual user form data to the server
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (name && email && password1) {
       if (password1 === password2) {
-        const loading = toast.loading("অনুগ্রহপূর্বক অপেক্ষা করুন...⏳");
-        setFormData({ ...formData, textChange: "নিবন্ধন হচ্ছে" });
+        const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...⏳');
+        setFormData({ ...formData, textChange: 'নিবন্ধন হচ্ছে' });
+
+        try {
+          const querySnapshot = await db
+            .collection('users')
+            .where('email', '==', email)
+            .get();
+          if (querySnapshot.docs.length === 0) {
+            // create a new user
+            await db.collection('users').add({
+              email,
+              enrolledClassrooms: defaultLabroom,
+            });
+          }
+        } catch (err) {
+          toast.dismiss();
+          toast.error(err?.message);
+        }
+
+        // send data to server
         axios
           .post(`${process.env.REACT_APP_API_URL}/register`, {
             name,
@@ -112,11 +133,11 @@ const RegistrationModal = (props) => {
           .then((res) => {
             setFormData({
               ...formData,
-              name: "",
-              email: "",
-              password1: "",
-              password2: "",
-              textChange: "নিবন্ধন হয়েছে",
+              name: '',
+              email: '',
+              password1: '',
+              password2: '',
+              textChange: 'নিবন্ধন হয়েছে',
             });
             toast.dismiss(loading);
             toast.success(res.data.message);
@@ -127,29 +148,48 @@ const RegistrationModal = (props) => {
               ...formData,
               name: name,
               email: email,
-              password1: "",
-              password2: "",
-              textChange: "নিবন্ধন করুন",
+              password1: password1,
+              password2: password2,
+              textChange: 'নিবন্ধন করুন',
             });
             toast.dismiss(loading);
-            toast.error(err.response.data.errors);
+            toast.error(err?.response?.data?.errors);
           });
       } else {
-        toast.error("পাসওয়ার্ড দুটির মধ্যে মিল খুঁজে পাওয়া যায়নি! 🤨");
+        toast.error('পাসওয়ার্ড দুটির মধ্যে মিল খুঁজে পাওয়া যায়নি! 🤨');
       }
     } else {
-      toast.error("অনুগ্রহপূর্বক সবগুলো স্থান তথ্য দিয়ে পূরণ করুন! 😒");
+      toast.error('অনুগ্রহপূর্বক সবগুলো স্থান তথ্য দিয়ে পূরণ করুন! 😒');
     }
   };
 
   // post institution user form data to the server
-  const handleUserSubmit = (e) => {
+  const handleUserSubmit = async (e) => {
     e.preventDefault();
 
     if (uInstitution && uName && uEmail && uMobile && uPassword1) {
       if (uPassword1 === uPassword2) {
-        const loading = toast.loading("অনুগ্রহপূর্বক অপেক্ষা করুন...⏳");
-        setFormUserData({ ...formUserData, uTextChange: "নিবন্ধন হচ্ছে" });
+        const loading = toast.loading('অনুগ্রহপূর্বক অপেক্ষা করুন...⏳');
+        setFormUserData({ ...formUserData, uTextChange: 'নিবন্ধন হচ্ছে' });
+
+        try {
+          const querySnapshot = await db
+            .collection('users')
+            .where('email', '==', uEmail)
+            .get();
+          if (querySnapshot.docs.length === 0) {
+            // create a new user
+            await db.collection('users').add({
+              email: uEmail,
+              enrolledClassrooms: defaultLabroom,
+            });
+          }
+        } catch (err) {
+          toast.dismiss();
+          toast.error(err?.message);
+        }
+
+        // send data to server
         axios
           .post(`${process.env.REACT_APP_API_URL}/registration`, {
             institution: uInstitution,
@@ -162,12 +202,12 @@ const RegistrationModal = (props) => {
           .then((res) => {
             setFormUserData({
               ...formUserData,
-              uName: "",
-              uEmail: "",
-              uMobile: "",
-              uPassword1: "",
-              uPassword2: "",
-              uTextChange: "নিবন্ধন হয়েছে",
+              uName: '',
+              uEmail: '',
+              uMobile: '',
+              uPassword1: '',
+              uPassword2: '',
+              uTextChange: 'নিবন্ধন হয়েছে',
             });
             toast.dismiss(loading);
             toast.success(res.data.message);
@@ -178,19 +218,19 @@ const RegistrationModal = (props) => {
               ...formUserData,
               uName: uName,
               uEmail: uEmail,
-              uMobile: "",
-              uPassword1: "",
-              uPassword2: "",
-              uTextChange: "নিবন্ধন করুন",
+              uMobile: uMobile,
+              uPassword1: uPassword1,
+              uPassword2: uPassword2,
+              uTextChange: 'নিবন্ধন করুন',
             });
             toast.dismiss(loading);
-            toast.error(err.response.data.errors);
+            toast.error(err?.response?.data?.errors);
           });
       } else {
-        toast.error("পাসওয়ার্ড দুটির মধ্যে মিল খুঁজে পাওয়া যায়নি! 🤨");
+        toast.error('পাসওয়ার্ড দুটির মধ্যে মিল খুঁজে পাওয়া যায়নি! 🤨');
       }
     } else {
-      toast.error("অনুগ্রহপূর্বক সবগুলো স্থান তথ্য দিয়ে পূরণ করুন! 😒");
+      toast.error('অনুগ্রহপূর্বক সবগুলো স্থান তথ্য দিয়ে পূরণ করুন! 😒');
     }
   };
 
@@ -219,7 +259,7 @@ const RegistrationModal = (props) => {
             <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
               {/* Close Button */}
               <button
-                className="close-button "
+                className="close-button absolute top-0 right-0 m-7"
                 type="button"
                 onClick={handleCloseModal}
               >
@@ -268,7 +308,7 @@ const RegistrationModal = (props) => {
                             name="accountType"
                             value="student"
                             defaultChecked
-                            onClick={() => setRole("student")}
+                            onClick={() => setRole('student')}
                           />
                           <span className=" text-gray-700 ml-2 font-body">
                             শিক্ষার্থী
@@ -280,7 +320,7 @@ const RegistrationModal = (props) => {
                             className="form-radio ring-brand-900"
                             name="accountType"
                             value="teacher"
-                            onClick={() => setRole("teacher")}
+                            onClick={() => setRole('teacher')}
                           />
                           <span className=" text-gray-700 ml-2 font-body">
                             শিক্ষক
@@ -334,7 +374,7 @@ const RegistrationModal = (props) => {
                             type="text"
                             className="login-input"
                             placeholder="আপনার নাম প্রদান করুন"
-                            onChange={handleUserChange("uName")}
+                            onChange={handleUserChange('uName')}
                             value={uName}
                           />
                         </div>
@@ -360,7 +400,7 @@ const RegistrationModal = (props) => {
                             type="email"
                             className="login-input"
                             placeholder="আপনার ইমেইল প্রদান করুন"
-                            onChange={handleUserChange("uEmail")}
+                            onChange={handleUserChange('uEmail')}
                             value={uEmail}
                           />
                         </div>
@@ -394,7 +434,7 @@ const RegistrationModal = (props) => {
                             type="text"
                             className="login-input"
                             placeholder="আপনার কন্টাক্ট নম্বর প্রদান করুন"
-                            onChange={handleUserChange("uMobile")}
+                            onChange={handleUserChange('uMobile')}
                             value={uMobile}
                           />
                         </div>
@@ -428,7 +468,7 @@ const RegistrationModal = (props) => {
                             type="password"
                             className="login-input"
                             placeholder="আপনার পাসওয়ার্ড প্রদান করুন"
-                            onChange={handleUserChange("uPassword1")}
+                            onChange={handleUserChange('uPassword1')}
                             value={uPassword1}
                           />
                         </div>
@@ -456,7 +496,7 @@ const RegistrationModal = (props) => {
                             type="password"
                             className="login-input"
                             placeholder="আপনার পাসওয়ার্ড পুনরায় প্রদান করুন"
-                            onChange={handleUserChange("uPassword2")}
+                            onChange={handleUserChange('uPassword2')}
                             value={uPassword2}
                           />
                         </div>
@@ -514,7 +554,7 @@ const RegistrationModal = (props) => {
                             name="accountType"
                             value="student"
                             defaultChecked
-                            onClick={() => setRole("student")}
+                            onClick={() => setRole('student')}
                           />
                           <span className=" text-gray-700 ml-2 font-body">
                             শিক্ষার্থী
@@ -526,7 +566,7 @@ const RegistrationModal = (props) => {
                             className="form-radio ring-brand-900"
                             name="accountType"
                             value="teacher"
-                            onClick={() => setRole("teacher")}
+                            onClick={() => setRole('teacher')}
                           />
                           <span className=" text-gray-700 ml-2 font-body">
                             শিক্ষক
@@ -554,7 +594,7 @@ const RegistrationModal = (props) => {
                             type="text"
                             className="login-input"
                             placeholder="আপনার নাম প্রদান করুন"
-                            onChange={handleChange("name")}
+                            onChange={handleChange('name')}
                             value={name}
                           />
                         </div>
@@ -580,7 +620,7 @@ const RegistrationModal = (props) => {
                             type="email"
                             className="login-input"
                             placeholder="আপনার ইমেইল প্রদান করুন"
-                            onChange={handleChange("email")}
+                            onChange={handleChange('email')}
                             value={email}
                           />
                         </div>
@@ -614,7 +654,7 @@ const RegistrationModal = (props) => {
                             type="password"
                             className="login-input"
                             placeholder="আপনার পাসওয়ার্ড প্রদান করুন"
-                            onChange={handleChange("password1")}
+                            onChange={handleChange('password1')}
                             value={password1}
                           />
                         </div>
@@ -642,7 +682,7 @@ const RegistrationModal = (props) => {
                             type="password"
                             className="login-input"
                             placeholder="আপনার পাসওয়ার্ড পুনরায় প্রদান করুন"
-                            onChange={handleChange("password2")}
+                            onChange={handleChange('password2')}
                             value={password2}
                           />
                         </div>

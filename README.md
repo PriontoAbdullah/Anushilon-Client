@@ -1,4 +1,4 @@
-# 📺 Anushilon Virtual Science Lab
+# 📺 Anushilon-Virtual-Science-Lab
 
 ANUSIHLON is based on the idea that lab experiments can be taught using the internet, more efficiently and less expensively. The online lab is made for students with no access to physical labs or where equipment is not available owing to being rare or costly.
 
@@ -87,22 +87,6 @@ So the only solution to these kinds of problems is Virtual labs.
 - Backend Framework: Express.JS
 - Database: MongoDB, Mongoose (ODM)
 - CI/CD: Github, Heroku, Firebase.
-
----
-
-> ### Install
-``` 
- yarn install
-```
-> ### Build webpack
-``` 
- yarn run build
-```
-> ### Dev Server
-
-``` 
- yarn start
-```
 
 ---
 

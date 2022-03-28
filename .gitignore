@@ -5,9 +5,14 @@
 /.pnp
 .pnp.js
 .env
+.gitmodules
+.firebaserc
 
 # testing
 /coverage
+
+src/config/firebase.js
+/src/config/firebase.js
 
 # production
 /build

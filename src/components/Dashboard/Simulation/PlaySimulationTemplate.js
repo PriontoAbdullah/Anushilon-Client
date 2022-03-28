@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
-import Iframe from "react-iframe";
-import loader from "../../../assets/images/loader/simulation.gif";
-import useWindowDimensions from "../../../utils/useWindowDimensions";
+import React, { useRef, useState } from 'react';
+import Iframe from 'react-iframe';
+import loader from '../../../assets/images/loader/simulation.gif';
+import useWindowDimensions from '../../../utils/useWindowDimensions';
 
-const PlaySimulationTemplate = () => {
+const PlaySimulationTemplate = ({ videoURL }) => {
   const [preLoaderVisibility, setPreLoaderVisibility] = useState(true);
 
   // For Responsive Design
@@ -31,14 +31,27 @@ const PlaySimulationTemplate = () => {
         </div>
       ) : (
         // Simulation Play Ground
-        <Iframe
-          url="https://priontoabdullah.github.io/Anushilon-Simulations/html5/phy121.html"
-          width="100%"
-          height={getHeight}
-          className="mx-0 sm:mx-auto"
-          display="initial"
-          position="relative"
-        />
+        <>
+          <Iframe
+            url={videoURL}
+            width="100%"
+            height={getHeight}
+            className="mx-0 sm:mx-auto"
+            display="initial"
+            position="relative"
+          />
+
+          <div className="flex align-center justify-end mx-4 sm:mx-36">
+            <a
+              href="http://www.olabs.edu.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-brand-900 text-right pt-4 text-sm sm:text-base tracking-wider"
+            >
+              সোর্স
+            </a>
+          </div>
+        </>
       )}
     </div>
   );
